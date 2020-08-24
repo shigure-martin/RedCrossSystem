@@ -5,13 +5,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Automatic {
-    private static final String rootPath = "/Users/lli.chen/IdeaProjects/celebritiesGathering/backserver/src/main/java/com/celebritiesGathering";
+    private static final String rootPath = "D:\\ECNU\\DataBaseSystem\\Laboratory\\project\\works\\RedCrossSystem\\src\\main\\java\\com\\redCross";
     private static final String rootControllerPath = "/Automatic/rootController.txt";
     private static final String rootServicePath = "/Automatic/rootService.txt";
     private static final String rootRepositoryPath = "/Automatic/rootRepository.txt";
 
     public static void main(String args[]) throws IOException {
-        List<ClassDetail> classDetails = getClassDetails();
+        List<ClassDetail> classDetails = getAllClassDetails();
         for (ClassDetail classDetail : classDetails) {
             generate(classDetail);
         }
@@ -65,7 +65,7 @@ public class Automatic {
         generate(rootPath + rootControllerPath, "Controller", classDetail);
     }
 
-    private static final String packageName = "celebritiesGathering";
+    private static final String packageName = "redCross";
     private static final String packageSign = "###";
     private static final String classSign = "@@@@";
     private static final String classSignSmall = "!!!";
