@@ -5,7 +5,8 @@ import org.springframework.boot.SpringApplication;
 public class ErrorResponse<E> extends BaseResponse {
     private static final String ERROR_CODE = "500";
 
-    public ErrorResponse() {
+    public ErrorResponse(String msg) {
+        super(msg);
         this.code = ERROR_CODE;
     }
 

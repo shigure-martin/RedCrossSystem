@@ -1,6 +1,7 @@
 package com.redCross.entity;
 
 import com.redCross.constants.GenderType;
+import com.redCross.constants.RecipitentType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -20,21 +21,6 @@ public class DonorInfo extends IEntity {
     @ApiModelProperty(value = "账户id")
     private Long accountId;
 
-    @ApiModelProperty(value = "性别")
-    @Enumerated(EnumType.STRING)
-    private GenderType gender;
-
-    @ApiModelProperty(value = "所在省")
-    private String locatedProvince;
-
-    @ApiModelProperty(value = "所在城市")
-    private String locatedCity;
-
-    @ApiModelProperty(value = "手机号")
-    private String phoneNum;
-
     @ApiModelProperty(value = "捐赠总数")
-    private int donationSum;
-
-
+    private Integer donationSum;
 }
