@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9de621a7-b7a8-4ee1-9aa7-2b1492308e0e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/redCross/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/redCross/entity/Account.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -88,8 +88,8 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Spring Boot.RedCrossApplication" />
       <item itemvalue="Application.Automatic" />
+      <item itemvalue="Spring Boot.RedCrossApplication" />
     </list>
     <recent_temporary>
       <list>
@@ -123,6 +123,7 @@
       <workItem from="1598168486633" duration="627000" />
       <workItem from="1598192522918" duration="2830000" />
       <workItem from="1598236767893" duration="14347000" />
+      <workItem from="1598427416259" duration="2515000" />
     </task>
     <servers />
   </component>
