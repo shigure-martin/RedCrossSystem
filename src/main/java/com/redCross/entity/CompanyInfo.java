@@ -32,4 +32,7 @@ public class CompanyInfo extends IEntity {
 
     @ApiModelProperty(value = "联系人电话")
     private String contactTel;
+
+    @ApiModelProperty(value = "单位account")
+    private Long account;
 }

@@ -36,12 +36,6 @@ public class DonorInfoController extends BaseController {
     @Autowired
     private DonorInfoRepository donorInfoRepository;
 
-    @PostMapping
-    @ApiOperation(value = "新建捐助者信息")
-    public BaseResponse create(@RequestBody DonorInfo donorInfo) {
-        return new SuccessResponse<>(donorInfoService.saveOrUpdate(donorInfo));
-    }
-
     @GetMapping("/{id}")
     @ApiOperation(value = "根据Id获取捐助者信息")
     public BaseResponse getOne(@PathVariable Long id) {
@@ -69,7 +63,7 @@ public class DonorInfoController extends BaseController {
     public BaseResponse update(@RequestBody DonorInfo donorInfo) {
         DonorInfo old = donorInfoService.getById(donorInfo.getId());
         Preconditions.checkNotNull(old);
-        return new SuccessResponse<>(donorInfoService.saveOrUpdate(donorInfo));
+        return new SuccessResponse<>(donorInfoService.updateDonorInfo(donorInfo));
     }
 
     @DeleteMapping("/{id}")

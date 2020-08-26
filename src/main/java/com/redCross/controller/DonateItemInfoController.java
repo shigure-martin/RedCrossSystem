@@ -77,4 +77,7 @@ public class DonateItemInfoController extends BaseController {
     public BaseResponse delete(@PathVariable Long id) {
         return new SuccessResponse<>(donateItemInfoService.deleteEntity(id));
     }
+
+    @ApiOperation(value = "审核捐助物品")
+    @PutMapping("")
 }

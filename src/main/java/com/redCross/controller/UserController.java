@@ -1,19 +1,26 @@
 package com.redCross.controller;
 
 import com.google.common.base.Preconditions;
+import com.redCross.constants.RecipitentType;
 import com.redCross.constants.RoleType;
-import com.redCross.entity.Account;
+import com.redCross.entity.*;
 import com.redCross.repository.AccountRepository;
+import com.redCross.repository.PersonInfoRepository;
 import com.redCross.request.LoginRequest;
 import com.redCross.request.OrderRequest;
 import com.redCross.response.BaseResponse;
 import com.redCross.response.ErrorResponse;
 import com.redCross.response.SuccessResponse;
 import com.redCross.security.UserAuthenticationProvider;
+import com.redCross.service.CompanyInfoService;
+import com.redCross.service.DonorInfoService;
+import com.redCross.service.PersonInfoService;
+import com.redCross.service.RecipientInfoService;
 import com.redCross.utils.EntityUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.redCross.utils.EntityUtils;
+import org.checkerframework.checker.units.qual.A;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -32,6 +39,18 @@ public class UserController extends BaseController {
 
     @Autowired
     private AccountRepository accountRepository;
+
+    @Autowired
+    private PersonInfoService personInfoService;
+
+    @Autowired
+    private DonorInfoService donorInfoService;
+
+    @Autowired
+    private RecipientInfoService recipientInfoService;
+
+    @Autowired
+    private CompanyInfoService companyInfoService;
 
     /**
      * 登陆？
@@ -54,6 +73,44 @@ public class UserController extends BaseController {
         if (old != null) {
             return new ErrorResponse("用户名不能重复。");
         }
+        return new SuccessResponse<>(userService.saveOrUpdate(account));
+    }
+
+    @PostMapping("/individual")
+    @ApiOperation(value = "新建个人")
+    public BaseResponse createIndividual(@RequestBody Account account){
+        Preconditions.checkNotNull(account.getLoginName(), "用户名不能为空");
+        Account old = accountRepository.findByLoginName(account.getLoginName());
+        if( old != null){
+            return new ErrorResponse("用户名不能重复");
+        }
+        account.setRecipitentType(RecipitentType.individual);
+        userService.saveOrUpdate(account);
+        PersonInfo personInfo = personInfoService.createPersonInfo(account);
+        account.setPersonId(personInfo.getId());
+        DonorInfo donorInfo = donorInfoService.createDonorInfo(account);
+        account.setDonorId(donorInfo.getId());
+        RecipientInfo recipientInfo = recipientInfoService.createRecipientInfo(account);
+        account.setRecipientId(recipientInfo.getId());
+        return new SuccessResponse<>(userService.saveOrUpdate(account));
+    }
+
+    @PostMapping("/company")
+    @ApiOperation(value = "新建单位")
+    public BaseResponse createCompany(@RequestBody Account account){
+        Preconditions.checkNotNull(account.getLoginName(), "用户名不能为空");
+        Account old = accountRepository.findByLoginName(account.getLoginName());
+        if( old != null){
+            return new ErrorResponse("用户名重复");
+        }
+        account.setRecipitentType(RecipitentType.company);
+        userService.saveOrUpdate(account);
+        CompanyInfo companyInfo = companyInfoService.createCompanyInfo(account);
+        account.setCompanyId(companyInfo.getId());
+        DonorInfo donorInfo = donorInfoService.createDonorInfo(account);
+        account.setDonorId(donorInfo.getId());
+        RecipientInfo recipientInfo = recipientInfoService.createRecipientInfo(account);
+        account.setRecipientId(recipientInfo.getId());
         return new SuccessResponse<>(userService.saveOrUpdate(account));
     }
 

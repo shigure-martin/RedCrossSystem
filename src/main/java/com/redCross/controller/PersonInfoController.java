@@ -36,12 +36,6 @@ public class PersonInfoController extends BaseController {
     @Autowired
     private PersonInfoRepository personInfoRepository;
 
-    @PostMapping
-    @ApiOperation(value = "新建个人信息")
-    public BaseResponse create(@RequestBody PersonInfo personInfo) {
-        return new SuccessResponse<>(personInfoService.saveOrUpdate(personInfo));
-    }
-
     @GetMapping("/{id}")
     @ApiOperation(value = "根据Id获取个人信息")
     public BaseResponse getOne(@PathVariable Long id) {
@@ -69,7 +63,7 @@ public class PersonInfoController extends BaseController {
     public BaseResponse update(@RequestBody PersonInfo personInfo) {
         PersonInfo old = personInfoService.getById(personInfo.getId());
         Preconditions.checkNotNull(old);
-        return new SuccessResponse<>(personInfoService.saveOrUpdate(personInfo));
+        return new SuccessResponse<>(personInfoService.updatePersonInfo(personInfo));
     }
 
     @DeleteMapping("/{id}")

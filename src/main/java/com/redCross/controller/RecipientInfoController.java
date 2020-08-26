@@ -36,12 +36,6 @@ public class RecipientInfoController extends BaseController {
     @Autowired
     private RecipientInfoRepository recipientInfoRepository;
 
-    @PostMapping
-    @ApiOperation(value = "新建受捐者信息")
-    public BaseResponse create(@RequestBody RecipientInfo recipientInfo) {
-        return new SuccessResponse<>(recipientInfoService.saveOrUpdate(recipientInfo));
-    }
-
     @GetMapping("/{id}")
     @ApiOperation(value = "根据Id获取受捐者信息")
     public BaseResponse getOne(@PathVariable Long id) {
@@ -69,7 +63,7 @@ public class RecipientInfoController extends BaseController {
     public BaseResponse update(@RequestBody RecipientInfo recipientInfo) {
         RecipientInfo old = recipientInfoService.getById(recipientInfo.getId());
         Preconditions.checkNotNull(old);
-        return new SuccessResponse<>(recipientInfoService.saveOrUpdate(recipientInfo));
+        return new SuccessResponse<>(recipientInfoService.updateRecipientInfo(recipientInfo));
     }
 
     @DeleteMapping("/{id}")

@@ -33,4 +33,7 @@ public class PersonInfo extends IEntity {
 
     @ApiModelProperty(value = "联系邮箱")
     private String email;
+
+    @ApiModelProperty(value = "用户account")
+    private Long account;
 }

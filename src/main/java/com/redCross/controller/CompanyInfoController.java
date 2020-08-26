@@ -36,12 +36,6 @@ public class CompanyInfoController extends BaseController {
     @Autowired
     private CompanyInfoRepository companyInfoRepository;
 
-    @PostMapping
-    @ApiOperation(value = "新建单位信息")
-    public BaseResponse create(@RequestBody CompanyInfo companyInfo) {
-        return new SuccessResponse<>(companyInfoService.saveOrUpdate(companyInfo));
-    }
-
     @GetMapping("/{id}")
     @ApiOperation(value = "根据Id获取单位信息")
     public BaseResponse getOne(@PathVariable Long id) {
@@ -69,7 +63,7 @@ public class CompanyInfoController extends BaseController {
     public BaseResponse update(@RequestBody CompanyInfo companyInfo) {
         CompanyInfo old = companyInfoService.getById(companyInfo.getId());
         Preconditions.checkNotNull(old);
-        return new SuccessResponse<>(companyInfoService.saveOrUpdate(companyInfo));
+        return new SuccessResponse<>(companyInfoService.updateCompanyInfo(companyInfo));
     }
 
     @DeleteMapping("/{id}")

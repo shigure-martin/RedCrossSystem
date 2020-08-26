@@ -19,6 +19,6 @@ public class RecipientInfo extends IEntity {
     private Long recipientId;
 
     @ApiModelProperty(value = "受捐总数")
-    private Long totalNum;
+    private Integer totalNum;
 
 }
