@@ -29,7 +29,7 @@ public class Account extends IEntity {
     @ApiModelProperty(value = "账户类型:单位、个人")
     private RecipitentType recipitentType;
 
-    
+
     @ApiModelProperty(value = "单位id")
     private Long companyId;
 
