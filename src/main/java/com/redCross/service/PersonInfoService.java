@@ -38,6 +38,7 @@ public class PersonInfoService extends BasicService<PersonInfo, Long> {
 
     public PersonInfo updatePersonInfo(PersonInfo personInfo){
         PersonInfo old = this.getById(personInfo.getId());
+        old.setRoleType(personInfo.getRoleType());
         old.setPersonName(personInfo.getPersonName());
         old.setAddressId(personInfo.getAddressId());
         old.setGenderType(personInfo.getGenderType());

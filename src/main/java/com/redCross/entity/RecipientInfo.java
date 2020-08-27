@@ -1,6 +1,5 @@
 package com.redCross.entity;
 
-import com.redCross.constants.RecipitentType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
