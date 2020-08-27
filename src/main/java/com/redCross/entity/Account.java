@@ -2,7 +2,7 @@ package com.redCross.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.redCross.constants.RecipitentType;
+import com.redCross.constants.RecipientType;
 import com.redCross.constants.RoleType;
 import com.redCross.security.JPACryptoConverter;
 import io.swagger.annotations.ApiModelProperty;
@@ -27,7 +27,7 @@ public class Account extends IEntity {
 
     @Enumerated(EnumType.STRING)
     @ApiModelProperty(value = "账户类型:单位、个人")
-    private RecipitentType recipitentType;
+    private RecipientType recipitentType;
 
     @ApiModelProperty(value = "单位id")
     private Long companyId;

@@ -1,13 +1,9 @@
 package com.redCross.entity;
 
-import com.redCross.constants.GenderType;
-import com.redCross.constants.RecipitentType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 @Data
 @Entity
