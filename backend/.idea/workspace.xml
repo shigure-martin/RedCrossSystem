@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9de621a7-b7a8-4ee1-9aa7-2b1492308e0e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application-dev.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application-dev.properties" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Enum" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="importingSettings">
+      <MavenImportingSettings>
+        <option name="importAutomatically" value="true" />
+      </MavenImportingSettings>
+    </option>
+  </component>
+  <component name="ProjectId" id="1bseZiWR0zgov1vGzW56fKJqG6L" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
+    <property name="ExpandSpringBootJavaOptionsPanel" value="true" />
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.EditorConfig" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\ECNU\DataBaseSystem\Laboratory\project\works\Red_Project\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.RedCrossApplication">
+    <configuration name="Automatic" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.redCross.Automatic.Automatic" />
+      <module name="RedCrossSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.redCross.Automatic.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RedCrossApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="RedCrossSystem" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.redCross.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.redCross.RedCrossApplication" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Spring Boot.RedCrossApplication" />
+      <item itemvalue="Application.Automatic" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Spring Boot.RedCrossApplication" />
+        <item itemvalue="Application.Automatic" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9de621a7-b7a8-4ee1-9aa7-2b1492308e0e" name="Default Changelist" comment="" />
+      <created>1589425285263</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1589425285263</updated>
+      <workItem from="1589425288832" duration="7981000" />
+      <workItem from="1590291258275" duration="1991000" />
+      <workItem from="1590411414397" duration="5992000" />
+      <workItem from="1591017569677" duration="2879000" />
+      <workItem from="1591099661935" duration="389000" />
+      <workItem from="1591417504917" duration="610000" />
+      <workItem from="1591799487341" duration="2740000" />
+      <workItem from="1592399510205" duration="2029000" />
+      <workItem from="1592403679889" duration="157000" />
+      <workItem from="1592483644910" duration="537000" />
+      <workItem from="1592484413639" duration="3280000" />
+      <workItem from="1595937098807" duration="29000" />
+      <workItem from="1598168486633" duration="627000" />
+      <workItem from="1598192522918" duration="2830000" />
+      <workItem from="1598236767893" duration="14347000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="432" y="5" key="#RedCrossApplication" timestamp="1598273060951">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="432" y="5" key="#RedCrossApplication/0.0.1536.824@0.0.1536.824" timestamp="1598273060951" />
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1598273351485">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1598273351485" />
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1598275444116">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1598275444116" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1592536500810">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1592536500810" />
+    <state width="1493" height="361" key="GridCell.Tab.0.bottom" timestamp="1598276225501">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="361" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1598276225501" />
+    <state width="1493" height="361" key="GridCell.Tab.0.center" timestamp="1598276225501">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="361" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1598276225501" />
+    <state width="1493" height="361" key="GridCell.Tab.0.left" timestamp="1598276225501">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="361" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1598276225501" />
+    <state width="1493" height="361" key="GridCell.Tab.0.right" timestamp="1598276225501">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="361" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1598276225501" />
+    <state width="1493" height="361" key="GridCell.Tab.1.bottom" timestamp="1598276225501">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="361" key="GridCell.Tab.1.bottom/0.0.1536.824@0.0.1536.824" timestamp="1598276225501" />
+    <state width="1493" height="361" key="GridCell.Tab.1.center" timestamp="1598276225501">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="361" key="GridCell.Tab.1.center/0.0.1536.824@0.0.1536.824" timestamp="1598276225501" />
+    <state width="1493" height="361" key="GridCell.Tab.1.left" timestamp="1598276225501">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="361" key="GridCell.Tab.1.left/0.0.1536.824@0.0.1536.824" timestamp="1598276225501" />
+    <state width="1493" height="361" key="GridCell.Tab.1.right" timestamp="1598276225501">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="361" key="GridCell.Tab.1.right/0.0.1536.824@0.0.1536.824" timestamp="1598276225501" />
+    <state width="1493" height="390" key="GridCell.Tab.2.bottom" timestamp="1591802608511">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="390" key="GridCell.Tab.2.bottom/0.0.1536.824@0.0.1536.824" timestamp="1591802608511" />
+    <state width="1493" height="390" key="GridCell.Tab.2.center" timestamp="1591802608511">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="390" key="GridCell.Tab.2.center/0.0.1536.824@0.0.1536.824" timestamp="1591802608511" />
+    <state width="1493" height="390" key="GridCell.Tab.2.left" timestamp="1591802608511">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="390" key="GridCell.Tab.2.left/0.0.1536.824@0.0.1536.824" timestamp="1591802608511" />
+    <state width="1493" height="390" key="GridCell.Tab.2.right" timestamp="1591802608511">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="1493" height="390" key="GridCell.Tab.2.right/0.0.1536.824@0.0.1536.824" timestamp="1591802608511" />
+    <state x="270" y="54" key="SettingsEditor" timestamp="1598273145560">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="270" y="54" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1598273145560" />
+    <state x="805" y="145" width="672" height="678" key="search.everywhere.popup" timestamp="1591799943079">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="805" y="145" width="672" height="678" key="search.everywhere.popup/0.0.1536.824@0.0.1536.824" timestamp="1591799943079" />
+  </component>
+</project>
