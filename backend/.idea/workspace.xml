@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9de621a7-b7a8-4ee1-9aa7-2b1492308e0e" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/webserver.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/redCross/entity/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/redCross/entity/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +122,7 @@
       <workItem from="1598168486633" duration="627000" />
       <workItem from="1598192522918" duration="2830000" />
       <workItem from="1598236767893" duration="14347000" />
-      <workItem from="1598427416259" duration="2943000" />
+      <workItem from="1598427416259" duration="4177000" />
     </task>
     <servers />
   </component>
