@@ -1,6 +1,5 @@
 package com.redCross.entity;
 
-import com.redCross.constants.RecipitentType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -19,6 +18,6 @@ public class RecipientInfo extends IEntity {
     private Long recipientId;
 
     @ApiModelProperty(value = "受捐总数")
-    private Long totalNum;
+    private Integer totalNum;
 
 }

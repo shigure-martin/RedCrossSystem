@@ -1,5 +1,6 @@
 package com.redCross.service;
 
+import com.redCross.entity.Account;
 import com.redCross.entity.DonorInfo;
 import com.redCross.repository.DonorInfoRepository;
 import com.redCross.request.OrderRequest;
@@ -27,5 +28,20 @@ public class DonorInfoService extends BasicService<DonorInfo, Long> {
         Sort sort = getSortBy(order, new DonorInfo());
         List<DonorInfo> result = donorInfoRepository.findByDeleted(false,sort);
         return result;
+    }
+
+    public DonorInfo createDonorInfo(Account account){
+        DonorInfo donorInfo = new DonorInfo();
+        donorInfo.setAccountId(account.getId());
+        donorInfo.setDonationSum(0);
+        return this.saveOrUpdate(donorInfo);
+    }
+
+    public DonorInfo updateDonorInfo(DonorInfo donorInfo){
+        DonorInfo old = this.getById(donorInfo.getId());
+        old.setDonorImg(donorInfo.getDonorImg());
+        old.setDonorName(donorInfo.getDonorName());
+        DonorInfo donorInfoNew = this.saveOrUpdate(old);
+        return this.saveOrUpdate(donorInfoNew);
     }
 }

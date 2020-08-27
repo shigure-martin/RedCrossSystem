@@ -1,5 +1,6 @@
 package com.redCross.entity;
 
+import com.redCross.constants.RoleType;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -32,4 +33,11 @@ public class CompanyInfo extends IEntity {
 
     @ApiModelProperty(value = "联系人电话")
     private String contactTel;
+
+    @ApiModelProperty(value = "单位account")
+    private Long account;
+
+    @ApiModelProperty(value = "主要类型")
+    @Enumerated(EnumType.STRING)
+    private RoleType roleType = RoleType.customer;
 }

@@ -3,13 +3,20 @@ package com.redCross.controller;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import com.redCross.constants.ItemConfirmStatus;
+import com.redCross.constants.RoleType;
 import com.redCross.entity.DonateItemInfo;
+import com.redCross.entity.ItemInfo;
+import com.redCross.entity.PersonInfo;
 import com.redCross.repository.DonateItemInfoRepository;
 import com.redCross.request.OrderRequest;
 import com.redCross.response.BaseResponse;
+import com.redCross.response.ErrorResponse;
 import com.redCross.response.PageResponse;
 import com.redCross.response.SuccessResponse;
 import com.redCross.service.DonateItemInfoService;
+import com.redCross.service.ItemInfoService;
+import com.redCross.service.PersonInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,9 +43,19 @@ public class DonateItemInfoController extends BaseController {
     @Autowired
     private DonateItemInfoRepository donateItemInfoRepository;
 
+    @Autowired
+    PersonInfoService personInfoService;
+
+    @Autowired
+    ItemInfoService itemInfoService;
+
     @PostMapping
     @ApiOperation(value = "新建捐助物品信息")
     public BaseResponse create(@RequestBody DonateItemInfo donateItemInfo) {
+        ItemInfo itemInfo = itemInfoService.getById(donateItemInfo.getItemId());
+        if(!itemInfo.getItemConfirmStatus().equals(ItemConfirmStatus.confirm_sucess)){
+            return new ErrorResponse("添加加的物品是未通过审核的物品");
+        }
         return new SuccessResponse<>(donateItemInfoService.saveOrUpdate(donateItemInfo));
     }
 

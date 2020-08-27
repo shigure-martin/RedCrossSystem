@@ -1,8 +1,9 @@
 package com.redCross.controller;
 
 import com.google.common.base.Preconditions;
+import com.redCross.constants.RecipitentType;
 import com.redCross.constants.RoleType;
-import com.redCross.entity.Account;
+import com.redCross.entity.*;
 import com.redCross.repository.AccountRepository;
 import com.redCross.request.LoginRequest;
 import com.redCross.request.OrderRequest;
@@ -10,10 +11,10 @@ import com.redCross.response.BaseResponse;
 import com.redCross.response.ErrorResponse;
 import com.redCross.response.SuccessResponse;
 import com.redCross.security.UserAuthenticationProvider;
+import com.redCross.service.*;
 import com.redCross.utils.EntityUtils;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import com.redCross.utils.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,6 +34,20 @@ public class UserController extends BaseController {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Autowired
+    private PersonInfoService personInfoService;
+
+    @Autowired
+    private DonorInfoService donorInfoService;
+
+    @Autowired
+    private RecipientInfoService recipientInfoService;
+
+    @Autowired
+    private CompanyInfoService companyInfoService;
+
+    @Autowired
+    private UserService userService;
     /**
      * 登陆？
      */
@@ -55,6 +70,33 @@ public class UserController extends BaseController {
             return new ErrorResponse("用户名不能重复。");
         }
         return new SuccessResponse<>(userService.saveOrUpdate(account));
+    }
+
+    @PostMapping("create/account")
+    @ApiOperation(value = "用户名类型密码注册")
+    public BaseResponse createAccount(@RequestParam String loginName, @RequestParam RecipitentType recipitentType, @RequestParam String password){
+        Account old = userService.getByLoginName(loginName);
+        if( old != null){
+            return new ErrorResponse("用户名不能重复");
+        }
+        Account account = new Account();
+        account.setLoginName(loginName);
+        account.setPassword(password);
+        account.setPasswordSet(true);
+        account.setRecipitentType(recipitentType);
+        Account accountNew = userService.saveOrUpdate(account);
+        if( account.getRecipitentType().equals(RecipitentType.individual)) {
+            PersonInfo personInfo = personInfoService.createPersonInfo(accountNew);
+            accountNew.setPersonId(personInfo.getId());
+        } else if( account.getRecipitentType().equals(RecipitentType.company)){
+            CompanyInfo companyInfo = companyInfoService.createCompanyInfo(accountNew);
+            accountNew.setCompanyId(companyInfo.getId());
+        }
+        DonorInfo donorInfo = donorInfoService.createDonorInfo(accountNew);
+        accountNew.setDonorId(donorInfo.getId());
+        RecipientInfo recipientInfo = recipientInfoService.createRecipientInfo(accountNew);
+        accountNew.setRecipientId(recipientInfo.getId());
+        return new SuccessResponse<>(userService.saveOrUpdate(accountNew));
     }
 
     @GetMapping("/me")

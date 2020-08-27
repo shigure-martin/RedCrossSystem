@@ -28,4 +28,5 @@ public class DonateItemInfoService extends BasicService<DonateItemInfo, Long> {
         List<DonateItemInfo> result = donateItemInfoRepository.findByDeleted(false,sort);
         return result;
     }
+
 }

@@ -7,9 +7,11 @@ import com.redCross.entity.DonationRecordInfo;
 import com.redCross.repository.DonationRecordInfoRepository;
 import com.redCross.request.OrderRequest;
 import com.redCross.response.BaseResponse;
+import com.redCross.response.ErrorResponse;
 import com.redCross.response.PageResponse;
 import com.redCross.response.SuccessResponse;
 import com.redCross.service.DonationRecordInfoService;
+import com.redCross.service.UserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,12 +36,20 @@ public class DonationRecordInfoController extends BaseController {
     private DonationRecordInfoService donationRecordInfoService;
 
     @Autowired
+    private UserService userService;
+
+    @Autowired
     private DonationRecordInfoRepository donationRecordInfoRepository;
 
     @PostMapping
     @ApiOperation(value = "新建捐助记录信息")
-    public BaseResponse create(@RequestBody DonationRecordInfo donationRecordInfo) {
-        return new SuccessResponse<>(donationRecordInfoService.saveOrUpdate(donationRecordInfo));
+    public BaseResponse create(@RequestParam(required = false) List<Long> donateItemInfoIds,
+                               @RequestParam(required = false) Long donorAccount,
+                               @RequestParam(required = false) Long recipientAccount) {
+        if(userService.getById(donorAccount) == null || userService.getById(recipientAccount) == null){
+            return new ErrorResponse("捐助者或被捐助者不存在");
+        }
+        return new SuccessResponse<>(donationRecordInfoService.createDonationRecordInfo(donateItemInfoIds, donorAccount, recipientAccount));
     }
 
     @GetMapping("/{id}")
