@@ -3,10 +3,13 @@ package com.redCross.controller;
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
+import com.redCross.constants.RecipitentType;
+import com.redCross.entity.Account;
 import com.redCross.entity.PersonInfo;
 import com.redCross.repository.PersonInfoRepository;
 import com.redCross.request.OrderRequest;
 import com.redCross.response.BaseResponse;
+import com.redCross.response.ErrorResponse;
 import com.redCross.response.PageResponse;
 import com.redCross.response.SuccessResponse;
 import com.redCross.service.PersonInfoService;
@@ -37,8 +40,13 @@ public class PersonInfoController extends BaseController {
     private PersonInfoRepository personInfoRepository;
 
     @PostMapping
-    @ApiOperation(value = "新建个人信息")
+    @ApiOperation(value = "新建个人信息（不可用）")
     public BaseResponse create(@RequestBody PersonInfo personInfo) {
+        Preconditions.checkNotNull(personInfo.getAccount());
+        Account account = userService.getById(personInfo.getAccount());
+        if (account.getRecipitentType() == RecipitentType.company) {
+            return new ErrorResponse("该账号是企业账号");
+        }
         return new SuccessResponse<>(personInfoService.saveOrUpdate(personInfo));
     }
 
@@ -55,13 +63,7 @@ public class PersonInfoController extends BaseController {
                                 @RequestParam(required = false, defaultValue = Integer_MAX_VALUE) int size,
                                 @RequestParam(required = false) String searchCondition
     ) {
-        List<OrderRequest> order = null;
-        Pageable pageable = new PageRequest(page,size);
-        List<PersonInfo> personInfos = personInfoService.getPersonInfos(page,size,order);
-        if (!Strings.isNullOrEmpty(searchCondition)) {
-            personInfos = personInfos.stream().filter(personInfo -> personInfo.toString().contains(searchCondition)).collect(Collectors.toList());
-        }
-        return new SuccessResponse<>(PageResponse.build(personInfos, pageable));
+        return new SuccessResponse<>(personInfoService.getPersonInfos(page, size, searchCondition, null));
     }
 
     @PutMapping
@@ -69,7 +71,7 @@ public class PersonInfoController extends BaseController {
     public BaseResponse update(@RequestBody PersonInfo personInfo) {
         PersonInfo old = personInfoService.getById(personInfo.getId());
         Preconditions.checkNotNull(old);
-        return new SuccessResponse<>(personInfoService.saveOrUpdate(personInfo));
+        return new SuccessResponse<>(personInfoService.updatePersonInfo(personInfo));
     }
 
     @DeleteMapping("/{id}")

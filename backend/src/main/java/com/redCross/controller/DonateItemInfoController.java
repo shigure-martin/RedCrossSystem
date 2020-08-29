@@ -6,6 +6,7 @@ import com.google.common.collect.Lists;
 import com.redCross.constants.ItemConfirmStatus;
 import com.redCross.constants.RoleType;
 import com.redCross.entity.DonateItemInfo;
+import com.redCross.entity.DonorInfo;
 import com.redCross.entity.ItemInfo;
 import com.redCross.entity.PersonInfo;
 import com.redCross.repository.DonateItemInfoRepository;
@@ -15,11 +16,13 @@ import com.redCross.response.ErrorResponse;
 import com.redCross.response.PageResponse;
 import com.redCross.response.SuccessResponse;
 import com.redCross.service.DonateItemInfoService;
+import com.redCross.service.DonorInfoService;
 import com.redCross.service.ItemInfoService;
 import com.redCross.service.PersonInfoService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.SpringApplicationEvent;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -44,6 +47,9 @@ public class DonateItemInfoController extends BaseController {
     private DonateItemInfoRepository donateItemInfoRepository;
 
     @Autowired
+    private DonorInfoService donorInfoService;
+
+    @Autowired
     PersonInfoService personInfoService;
 
     @Autowired
@@ -52,11 +58,14 @@ public class DonateItemInfoController extends BaseController {
     @PostMapping
     @ApiOperation(value = "新建捐助物品信息")
     public BaseResponse create(@RequestBody DonateItemInfo donateItemInfo) {
-        ItemInfo itemInfo = itemInfoService.getById(donateItemInfo.getItemId());
-        if(!itemInfo.getItemConfirmStatus().equals(ItemConfirmStatus.confirm_sucess)){
-            return new ErrorResponse("添加加的物品是未通过审核的物品");
+        Preconditions.checkNotNull(donateItemInfo.getDonorId(), "缺少捐助者id");
+        Preconditions.checkNotNull(donateItemInfo.getRecipientId(), "缺少受捐者id");
+        Preconditions.checkNotNull(donateItemInfo.getItemId(), "缺少物品id");
+        DonorInfo donorInfo = donorInfoService.getById(donateItemInfo.getDonorId());
+        if (donorInfo == null) {
+            return new ErrorResponse("不存在该受捐者");
         }
-        return new SuccessResponse<>(donateItemInfoService.saveOrUpdate(donateItemInfo));
+        return new SuccessResponse<>(donateItemInfoService.createDonateItemInfo(donateItemInfo));
     }
 
     @GetMapping("/{id}")
@@ -72,13 +81,7 @@ public class DonateItemInfoController extends BaseController {
                                 @RequestParam(required = false, defaultValue = Integer_MAX_VALUE) int size,
                                 @RequestParam(required = false) String searchCondition
     ) {
-        List<OrderRequest> order = null;
-        Pageable pageable = new PageRequest(page,size);
-        List<DonateItemInfo> donateItemInfos = donateItemInfoService.getDonateItemInfos(page,size,order);
-        if (!Strings.isNullOrEmpty(searchCondition)) {
-            donateItemInfos = donateItemInfos.stream().filter(donateItemInfo -> donateItemInfo.toString().contains(searchCondition)).collect(Collectors.toList());
-        }
-        return new SuccessResponse<>(PageResponse.build(donateItemInfos, pageable));
+        return new SuccessResponse<>(donateItemInfoService.getDonateItemInfos(page, size, searchCondition, null));
     }
 
     @PutMapping
@@ -86,7 +89,7 @@ public class DonateItemInfoController extends BaseController {
     public BaseResponse update(@RequestBody DonateItemInfo donateItemInfo) {
         DonateItemInfo old = donateItemInfoService.getById(donateItemInfo.getId());
         Preconditions.checkNotNull(old);
-        return new SuccessResponse<>(donateItemInfoService.saveOrUpdate(donateItemInfo));
+        return new SuccessResponse<>(donateItemInfoService.createDonateItemInfo(donateItemInfo));
     }
 
     @DeleteMapping("/{id}")

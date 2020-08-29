@@ -61,20 +61,10 @@ public class UserController extends BaseController {
         SecurityContextHolder.getContext().setAuthentication(authentication);
     }
 
-    @PostMapping("create")
-    @ApiOperation(value = "新建用户")
-    public BaseResponse create(@RequestBody Account account) {
-        Preconditions.checkNotNull(account.getLoginName(), "用户名不能为空。");
-        Account old = accountRepository.findByLoginName(account.getLoginName());
-        if (old != null) {
-            return new ErrorResponse("用户名不能重复。");
-        }
-        return new SuccessResponse<>(userService.saveOrUpdate(account));
-    }
-
     @PostMapping("create/account")
     @ApiOperation(value = "用户名类型密码注册")
-    public BaseResponse createAccount(@RequestParam String loginName, @RequestParam RecipitentType recipitentType, @RequestParam String password){
+    public BaseResponse createAccount(@RequestParam String loginName, @RequestParam RecipitentType recipitentType,
+                                      @RequestParam String password){
         Account old = userService.getByLoginName(loginName);
         if( old != null){
             return new ErrorResponse("用户名不能重复");
@@ -84,6 +74,7 @@ public class UserController extends BaseController {
         account.setPassword(password);
         account.setPasswordSet(true);
         account.setRecipitentType(recipitentType);
+        account.setRoleType(RoleType.customer);
         Account accountNew = userService.saveOrUpdate(account);
         if( account.getRecipitentType().equals(RecipitentType.individual)) {
             PersonInfo personInfo = personInfoService.createPersonInfo(accountNew);
@@ -106,9 +97,7 @@ public class UserController extends BaseController {
         if (account.isDeleted()) {
             return new ErrorResponse("该账户已被停用。");
         }
-
         return new SuccessResponse<>(account);
-
     }
 
     @GetMapping("/{id}")
@@ -122,11 +111,11 @@ public class UserController extends BaseController {
     @ApiOperation(value = "分页获取用户")
     public BaseResponse getList(@RequestParam(required = false, defaultValue = "0") int page,
                                 @RequestParam(required = false, defaultValue = Integer_MAX_VALUE) int size,
-                                @RequestParam(required = false) String loginName,
+                                @RequestParam(required = false) String searchCondition,
                                 @RequestParam(required = false) RoleType roleType) {
         List<OrderRequest> order = null;
-        Page<Account> customerinfos = userService.getAccountInfos(loginName, roleType, page, size, order);
-        return new SuccessResponse<>(customerinfos);
+        Page<Account> customerInfos = userService.getAccountInfos(searchCondition, roleType, page, size, order);
+        return new SuccessResponse<>(customerInfos);
     }
 
     @PutMapping("/password")

@@ -37,8 +37,4 @@ public class PersonInfo extends IEntity {
 
     @ApiModelProperty(value = "用户account")
     private Long account;
-
-    @ApiModelProperty(value = "主要类型")
-    @Enumerated(EnumType.STRING)
-    private RoleType roleType = RoleType.customer;
 }

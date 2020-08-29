@@ -7,6 +7,7 @@ import com.redCross.constants.RoleType;
 import com.redCross.security.JPACryptoConverter;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 
@@ -22,6 +23,7 @@ public class Account extends IEntity {
     @Convert(converter = JPACryptoConverter.class)
     private String password = "123456";
 
+    @ApiModelProperty(value = "账号主要类型")
     @Enumerated(EnumType.STRING)
     private RoleType roleType;
 

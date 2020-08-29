@@ -44,12 +44,11 @@ public class DonationRecordInfoController extends BaseController {
     @PostMapping
     @ApiOperation(value = "新建捐助记录信息")
     public BaseResponse create(@RequestParam(required = false) List<Long> donateItemInfoIds,
-                               @RequestParam(required = false) Long donorAccount,
-                               @RequestParam(required = false) Long recipientAccount) {
-        if(userService.getById(donorAccount) == null || userService.getById(recipientAccount) == null){
-            return new ErrorResponse("捐助者或被捐助者不存在");
+                               @RequestParam(required = false) Long donorAccount) {
+        if(userService.getById(donorAccount) == null){
+            return new ErrorResponse("捐助者不存在");
         }
-        return new SuccessResponse<>(donationRecordInfoService.createDonationRecordInfo(donateItemInfoIds, donorAccount, recipientAccount));
+        return new SuccessResponse<>(donationRecordInfoService.createDonationRecordInfo(donateItemInfoIds, donorAccount));
     }
 
     @GetMapping("/{id}")
@@ -65,13 +64,7 @@ public class DonationRecordInfoController extends BaseController {
                                 @RequestParam(required = false, defaultValue = Integer_MAX_VALUE) int size,
                                 @RequestParam(required = false) String searchCondition
     ) {
-        List<OrderRequest> order = null;
-        Pageable pageable = new PageRequest(page,size);
-        List<DonationRecordInfo> donationRecordInfos = donationRecordInfoService.getDonationRecordInfos(page,size,order);
-        if (!Strings.isNullOrEmpty(searchCondition)) {
-            donationRecordInfos = donationRecordInfos.stream().filter(donationRecordInfo -> donationRecordInfo.toString().contains(searchCondition)).collect(Collectors.toList());
-        }
-        return new SuccessResponse<>(PageResponse.build(donationRecordInfos, pageable));
+        return new SuccessResponse<>(donationRecordInfoService.getDonationRecordInfos(page, size, searchCondition, null));
     }
 
     @PutMapping

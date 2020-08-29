@@ -12,4 +12,6 @@ import java.util.List;
 public interface DeliveryAddressInfoRepository extends PagingAndSortingRepository<DeliveryAddressInfo, Long> {
     List<DeliveryAddressInfo> findByDeleted(boolean deleted);
     List<DeliveryAddressInfo> findByDeleted(boolean deleted, Sort sort);
+    List<DeliveryAddressInfo> findByCustomerIdAndIsdefaultAddressAndDeleted(Long customerId, boolean isDefault, boolean deleted);
+
 }

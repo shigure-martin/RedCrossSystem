@@ -49,14 +49,16 @@ public class UserService extends BasicService<Account, Long> implements UserDeta
 
     public Page<Account> getAccountInfos(String loginName, RoleType roleType, int page, int size, List<OrderRequest> order) {
         Pageable pageable = getPageableBy(order, new PageRequest(page, size), new Account());
-        RoleType[] roleTypes = getRoleTypes(roleType);
-        Page<Account> result;
-        if (!Strings.isNullOrEmpty(loginName)) {
-            String loginNameLike = "%" + loginName + "%";
-            result = userRepo.findByLoginNameIsLikeAndRoleTypeInAndDeleted(loginNameLike, roleTypes, false, pageable);
+        List<RoleType> roleTypes = new ArrayList<>();
+        if (roleType == null) {
+            roleTypes.add(RoleType.customer);
+            roleTypes.add(RoleType.superAdmin);
         } else {
-            result = userRepo.findByRoleTypeInAndDeleted(roleTypes, false, pageable);
+            roleTypes.add(roleType);
         }
+        Page<Account> result;
+        String loginNameLike = getLikeBy(loginName);
+        result = userRepo.findByLoginNameLikeAndRoleTypeInAndDeleted(loginNameLike, roleTypes, false, pageable);
         return result;
     }
 
