@@ -14,7 +14,7 @@ import java.util.List;
 public interface DonateItemInfoRepository extends PagingAndSortingRepository<DonateItemInfo, Long> {
     List<DonateItemInfo> findByDeleted(boolean deleted);
     List<DonateItemInfo> findByDeleted(boolean deleted, Sort sort);
-    List<DonateItemInfo> findByDonorIdAndIdInAnAndDeleted(Long donorId, List<Long> ids, boolean deleted);
+    List<DonateItemInfo> findByDonorIdAndIdInAndDeleted(Long donorId, List<Long> ids, boolean deleted);
 
     Page<DonateItemInfo> findByIndexJsonLikeAndDeleted(String searchCondition, boolean deleted, Pageable pageable);
 }

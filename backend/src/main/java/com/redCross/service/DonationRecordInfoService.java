@@ -56,7 +56,7 @@ public class DonationRecordInfoService extends BasicService<DonationRecordInfo, 
     }
 
     public List<DonationRecordInfo> createDonationRecordInfo(List<Long> donateItemInfoIds, Long donorId){
-        List<DonateItemInfo> donateItemInfos = donateItemInfoRepository.findByDonorIdAndIdInAnAndDeleted(donorId, donateItemInfoIds, false);
+        List<DonateItemInfo> donateItemInfos = donateItemInfoRepository.findByDonorIdAndIdInAndDeleted(donorId, donateItemInfoIds, false);
         Set<Long> set = new HashSet<>();
         for (DonateItemInfo donateItemInfo : donateItemInfos) {
             set.add(donateItemInfo.getRecipientId());
