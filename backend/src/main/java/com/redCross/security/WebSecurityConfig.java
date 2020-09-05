@@ -47,17 +47,17 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.cors();
         http.csrf().disable();//may cause post api rejected
         http.headers().frameOptions().disable();
-        http.authorizeRequests()
-                .antMatchers("/api/users/**")
-                .permitAll()
-                .antMatchers("/api/symbol/*/base64")
-                .permitAll()
-                .antMatchers("/api/*", "/api/**").authenticated()
-                .and()
-                .authenticationProvider(userAuthenticationProvider)
-                .httpBasic()
-                .authenticationEntryPoint(new AuthenticationEntryPointImpl())
-                .realmName("jzoa");
+//        http.authorizeRequests()
+//                .antMatchers("/api/users/**")
+//                .permitAll()
+//                .antMatchers("/api/symbol/*/base64")
+//                .permitAll()
+//                .antMatchers("/api/*", "/api/**").authenticated()
+//                .and()
+//                .authenticationProvider(userAuthenticationProvider)
+//                .httpBasic()
+//                .authenticationEntryPoint(new AuthenticationEntryPointImpl())
+//                .realmName("jzoa");
     }
 
 //    @Override
