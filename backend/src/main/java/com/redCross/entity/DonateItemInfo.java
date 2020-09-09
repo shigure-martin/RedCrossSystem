@@ -29,4 +29,7 @@ public class DonateItemInfo extends IEntity{
 
     @ApiModelProperty(value = "物品数量")
     private Integer itemNum;
+
+    @ApiModelProperty(value = "是否被捐助")
+    private Boolean donated = false;
 }

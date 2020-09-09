@@ -2,6 +2,7 @@ package com.redCross.service;
 
 import com.alibaba.fastjson.JSONObject;
 import com.redCross.constants.ItemType;
+import com.redCross.entity.ConfirmInfo;
 import com.redCross.entity.ItemInfo;
 import com.redCross.repository.ItemInfoRepository;
 import com.redCross.request.OrderRequest;
@@ -21,6 +22,9 @@ import java.util.List;
 public class ItemInfoService extends BasicService<ItemInfo, Long> {
 
     private ItemInfoRepository itemInfoRepository;
+
+    @Autowired
+    private ConfirmInfoService confirmInfoService;
 
     @Autowired
     public ItemInfoService(ItemInfoRepository itemInfoRepository) {
@@ -51,7 +55,8 @@ public class ItemInfoService extends BasicService<ItemInfo, Long> {
             connectStringBuffer(itemInfo.getBatchNum(), stringBuffer);
         }
         if (itemInfo.getConfirmId() != null) {
-            connectStringBuffer(itemInfo.getConfirmInfo().getItemConfirmStatus().toString(), stringBuffer);
+            ConfirmInfo confirmInfo = confirmInfoService.getById(itemInfo.getConfirmId());
+            connectStringBuffer(confirmInfo.getItemConfirmStatus().toString(), stringBuffer);
         }
         if (itemInfo.getItemDes() != null) {
             connectStringBuffer(itemInfo.getItemDes(), stringBuffer);

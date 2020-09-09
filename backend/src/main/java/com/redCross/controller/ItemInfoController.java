@@ -112,8 +112,8 @@ public class ItemInfoController extends BaseController {
         } else{
             confirmInfo.setItemConfirmStatus(ItemConfirmStatus.confirm_fail);
         }
+        confirmInfo = confirmInfoService.saveOrUpdate(confirmInfo);
         itemInfo.setConfirmId(confirmInfo.getId());
-        confirmInfoService.saveOrUpdate(confirmInfo);
-        return new SuccessResponse<>(itemInfoService.saveOrUpdate(itemInfo));
+        return new SuccessResponse<>(itemInfoService.creatItemInfo(itemInfo));
     }
 }

@@ -82,16 +82,20 @@ public class DonationRecordInfoService extends BasicService<DonationRecordInfo, 
             List<DeliveryAddressInfo> deliveryAddressInfos = deliveryAddressInfoRepository.findByCustomerIdAndIsdefaultAddressAndDeleted(entry.getValue().get(0).getRecipientId(), true, false);
             donationRecordInfo.setAddressId(deliveryAddressInfos.get(0).getId());
             donationRecordInfo.setDeliveryStatus(DeliveryStatus.un_delivered);
+            donationRecordInfo = this.saveOrUpdate(donationRecordInfo);
             result.add(donationRecordInfo);
             for (DonateItemInfo donateItemInfo : entry.getValue()) {
-                donateItemInfoService.deleteEntity(donateItemInfo.getId());
+//                donateItemInfoService.deleteEntity(donateItemInfo.getId());
+                donateItemInfo.setDonated(true);
+                donateItemInfo.setRecordId(donationRecordInfo.getId());
+                donateItemInfoService.saveOrUpdate(donateItemInfo);
             }
         }
-        List<DonationRecordInfo> donationRecordInfosNew = Lists.newArrayList(this.saveOrUpdateAll(result));
-        for (DonationRecordInfo donationRecordInfo : donationRecordInfosNew) {
+//        List<DonationRecordInfo> donationRecordInfosNew = Lists.newArrayList(this.saveOrUpdateAll(result));
+        for (DonationRecordInfo donationRecordInfo : result) {
             setDonationRecordInfoIndexJson(donationRecordInfo);
         }
-        return Lists.newArrayList(this.saveOrUpdateAll(donationRecordInfosNew));
+        return Lists.newArrayList(this.saveOrUpdateAll(result));
     }
 
     public void setDonationRecordInfoIndexJson(DonationRecordInfo donationRecordInfo) {

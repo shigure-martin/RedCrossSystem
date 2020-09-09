@@ -59,7 +59,7 @@ public class DonateItemInfoController extends BaseController {
     @ApiOperation(value = "新建捐助物品信息")
     public BaseResponse create(@RequestBody DonateItemInfo donateItemInfo) {
         Preconditions.checkNotNull(donateItemInfo.getDonorId(), "缺少捐助者id");
-        Preconditions.checkNotNull(donateItemInfo.getRecipientId(), "缺少受捐者id");
+        //Preconditions.checkNotNull(donateItemInfo.getRecipientId(), "缺少受捐者id");
         Preconditions.checkNotNull(donateItemInfo.getItemId(), "缺少物品id");
         DonorInfo donorInfo = donorInfoService.getById(donateItemInfo.getDonorId());
         if (donorInfo == null) {
